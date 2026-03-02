@@ -55,6 +55,47 @@ function deleteTodo(id) {
     renderTodos();
 }
 
+// Edit a todo
+function editTodo(id) {
+    const todo = todos.find(todo => todo.id === id);
+    if (!todo) return;
+
+    const li = document.querySelector(`[data-id="${id}"]`);
+    const textSpan = li.querySelector('.todo-text');
+    const actionsDiv = li.querySelector('.todo-actions');
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'edit-input';
+    input.value = todo.text;
+
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'save-btn';
+    saveBtn.textContent = 'Save';
+
+    textSpan.replaceWith(input);
+    actionsDiv.innerHTML = '';
+    actionsDiv.appendChild(saveBtn);
+
+    input.focus();
+
+    function save() {
+        const newText = input.value.trim();
+        if (newText === '') {
+            alert('Todo text cannot be empty!');
+            return;
+        }
+        todo.text = newText;
+        saveTodos();
+        renderTodos();
+    }
+
+    saveBtn.addEventListener('click', save);
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') save();
+    });
+}
+
 // Toggle todo completion status
 function toggleTodo(id) {
     const todo = todos.find(todo => todo.id === id);
@@ -91,14 +132,16 @@ function renderTodos() {
     todos.forEach(todo => {
         const li = document.createElement('li');
         li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+        li.dataset.id = todo.id;
 
         li.innerHTML = `
             <span class="todo-text" onclick="toggleTodo(${todo.id})">
                 ${todo.text}
             </span>
-            <button class="delete-btn" onclick="deleteTodo(${todo.id})">
-                Delete
-            </button>
+            <div class="todo-actions">
+                <button class="edit-btn" onclick="editTodo(${todo.id})">Edit</button>
+                <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
+            </div>
         `;
 
         todoList.appendChild(li);

@@ -186,6 +186,61 @@ h1 {
     transition: all 0.3s ease;
 }
 
+.todo-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn {
+    padding: 8px 12px;
+    background: linear-gradient(135deg, var(--btn-gradient-start) 0%, var(--btn-gradient-end) 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    transform: scale(1.05);
+}
+
+.edit-btn:active {
+    transform: scale(0.95);
+}
+
+.edit-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid var(--input-border-focus);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    background: var(--container-bg);
+    color: var(--text-primary);
+}
+
+.save-btn {
+    padding: 8px 12px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+    background: #43a047;
+    transform: scale(1.05);
+}
+
+.save-btn:active {
+    transform: scale(0.95);
+}
+
 .delete-btn {
     padding: 8px 12px;
     background: #ff6b6b;
