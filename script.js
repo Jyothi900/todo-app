@@ -129,7 +129,7 @@ function renderTodos() {
         return;
     }
 
-    todos.forEach(todo => {
+    todos.forEach((todo, index) => {
         const li = document.createElement('li');
         li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
         li.dataset.id = todo.id;
@@ -139,6 +139,7 @@ function renderTodos() {
                 ${todo.text}
             </span>
             <div class="todo-actions">
+                <span class="todo-number">${index + 1}</span>
                 <button class="edit-btn" onclick="editTodo(${todo.id})">Edit</button>
                 <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
             </div>
